@@ -27,9 +27,9 @@ type Kind = ast.Kind
 
 const (
 	// Identifiers and PrivateIdentifier
-	KindIdentifier            = ast.KindIdentifier
-	KindPrivateIdentifier     = ast.KindPrivateIdentifier
-	KindJSDocCommentTextToken = ast.KindJSDocCommentTextToken
+	KindIdentifier        = ast.KindIdentifier
+	KindPrivateIdentifier = ast.KindPrivateIdentifier
+	// KindJSDocCommentTextToken = ast.KindJSDocCommentTextToken
 	// Parse tree nodes
 	// Names
 	KindQualifiedName        = ast.KindQualifiedName
