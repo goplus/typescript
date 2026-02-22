@@ -22,6 +22,171 @@ import (
 
 // -----------------------------------------------------------------------------
 
+// Kind represents the kind of a syntax node.
+type Kind = ast.Kind
+
+const (
+	// Parse tree nodes
+	// Names
+	KindQualifiedName        = ast.KindQualifiedName
+	KindComputedPropertyName = ast.KindComputedPropertyName
+	// Signature elements
+	KindTypeParameter = ast.KindTypeParameter
+	KindParameter     = ast.KindParameter
+	KindDecorator     = ast.KindDecorator
+	// TypeMember
+	KindPropertySignature           = ast.KindPropertySignature
+	KindPropertyDeclaration         = ast.KindPropertyDeclaration
+	KindMethodSignature             = ast.KindMethodSignature
+	KindMethodDeclaration           = ast.KindMethodDeclaration
+	KindClassStaticBlockDeclaration = ast.KindClassStaticBlockDeclaration
+	KindConstructor                 = ast.KindConstructor
+	KindGetAccessor                 = ast.KindGetAccessor
+	KindSetAccessor                 = ast.KindSetAccessor
+	KindCallSignature               = ast.KindCallSignature
+	KindConstructSignature          = ast.KindConstructSignature
+	KindIndexSignature              = ast.KindIndexSignature
+	// Type
+	KindTypePredicate           = ast.KindTypePredicate
+	KindTypeReference           = ast.KindTypeReference
+	KindFunctionType            = ast.KindFunctionType
+	KindConstructorType         = ast.KindConstructorType
+	KindTypeQuery               = ast.KindTypeQuery
+	KindTypeLiteral             = ast.KindTypeLiteral
+	KindArrayType               = ast.KindArrayType
+	KindTupleType               = ast.KindTupleType
+	KindOptionalType            = ast.KindOptionalType
+	KindRestType                = ast.KindRestType
+	KindUnionType               = ast.KindUnionType
+	KindIntersectionType        = ast.KindIntersectionType
+	KindConditionalType         = ast.KindConditionalType
+	KindInferType               = ast.KindInferType
+	KindParenthesizedType       = ast.KindParenthesizedType
+	KindThisType                = ast.KindThisType
+	KindTypeOperator            = ast.KindTypeOperator
+	KindIndexedAccessType       = ast.KindIndexedAccessType
+	KindMappedType              = ast.KindMappedType
+	KindLiteralType             = ast.KindLiteralType
+	KindNamedTupleMember        = ast.KindNamedTupleMember
+	KindTemplateLiteralType     = ast.KindTemplateLiteralType
+	KindTemplateLiteralTypeSpan = ast.KindTemplateLiteralTypeSpan
+	KindImportType              = ast.KindImportType
+	// Binding patterns
+	KindObjectBindingPattern = ast.KindObjectBindingPattern
+	KindArrayBindingPattern  = ast.KindArrayBindingPattern
+	KindBindingElement       = ast.KindBindingElement
+	// Expression
+	KindArrayLiteralExpression      = ast.KindArrayLiteralExpression
+	KindObjectLiteralExpression     = ast.KindObjectLiteralExpression
+	KindPropertyAccessExpression    = ast.KindPropertyAccessExpression
+	KindElementAccessExpression     = ast.KindElementAccessExpression
+	KindCallExpression              = ast.KindCallExpression
+	KindNewExpression               = ast.KindNewExpression
+	KindTaggedTemplateExpression    = ast.KindTaggedTemplateExpression
+	KindTypeAssertionExpression     = ast.KindTypeAssertionExpression
+	KindParenthesizedExpression     = ast.KindParenthesizedExpression
+	KindFunctionExpression          = ast.KindFunctionExpression
+	KindArrowFunction               = ast.KindArrowFunction
+	KindDeleteExpression            = ast.KindDeleteExpression
+	KindTypeOfExpression            = ast.KindTypeOfExpression
+	KindVoidExpression              = ast.KindVoidExpression
+	KindAwaitExpression             = ast.KindAwaitExpression
+	KindPrefixUnaryExpression       = ast.KindPrefixUnaryExpression
+	KindPostfixUnaryExpression      = ast.KindPostfixUnaryExpression
+	KindBinaryExpression            = ast.KindBinaryExpression
+	KindConditionalExpression       = ast.KindConditionalExpression
+	KindTemplateExpression          = ast.KindTemplateExpression
+	KindYieldExpression             = ast.KindYieldExpression
+	KindSpreadElement               = ast.KindSpreadElement
+	KindClassExpression             = ast.KindClassExpression
+	KindOmittedExpression           = ast.KindOmittedExpression
+	KindExpressionWithTypeArguments = ast.KindExpressionWithTypeArguments
+	KindAsExpression                = ast.KindAsExpression
+	KindNonNullExpression           = ast.KindNonNullExpression
+	KindMetaProperty                = ast.KindMetaProperty
+	KindSyntheticExpression         = ast.KindSyntheticExpression
+	KindSatisfiesExpression         = ast.KindSatisfiesExpression
+	// Misc
+	KindTemplateSpan          = ast.KindTemplateSpan
+	KindSemicolonClassElement = ast.KindSemicolonClassElement
+	// Element
+	KindBlock                      = ast.KindBlock
+	KindEmptyStatement             = ast.KindEmptyStatement
+	KindVariableStatement          = ast.KindVariableStatement
+	KindExpressionStatement        = ast.KindExpressionStatement
+	KindIfStatement                = ast.KindIfStatement
+	KindDoStatement                = ast.KindDoStatement
+	KindWhileStatement             = ast.KindWhileStatement
+	KindForStatement               = ast.KindForStatement
+	KindForInStatement             = ast.KindForInStatement
+	KindForOfStatement             = ast.KindForOfStatement
+	KindContinueStatement          = ast.KindContinueStatement
+	KindBreakStatement             = ast.KindBreakStatement
+	KindReturnStatement            = ast.KindReturnStatement
+	KindWithStatement              = ast.KindWithStatement
+	KindSwitchStatement            = ast.KindSwitchStatement
+	KindLabeledStatement           = ast.KindLabeledStatement
+	KindThrowStatement             = ast.KindThrowStatement
+	KindTryStatement               = ast.KindTryStatement
+	KindDebuggerStatement          = ast.KindDebuggerStatement
+	KindVariableDeclaration        = ast.KindVariableDeclaration
+	KindVariableDeclarationList    = ast.KindVariableDeclarationList
+	KindFunctionDeclaration        = ast.KindFunctionDeclaration
+	KindClassDeclaration           = ast.KindClassDeclaration
+	KindInterfaceDeclaration       = ast.KindInterfaceDeclaration
+	KindTypeAliasDeclaration       = ast.KindTypeAliasDeclaration
+	KindEnumDeclaration            = ast.KindEnumDeclaration
+	KindModuleDeclaration          = ast.KindModuleDeclaration
+	KindModuleBlock                = ast.KindModuleBlock
+	KindCaseBlock                  = ast.KindCaseBlock
+	KindNamespaceExportDeclaration = ast.KindNamespaceExportDeclaration
+	KindImportEqualsDeclaration    = ast.KindImportEqualsDeclaration
+	KindImportDeclaration          = ast.KindImportDeclaration
+	KindImportClause               = ast.KindImportClause
+	KindNamespaceImport            = ast.KindNamespaceImport
+	KindNamedImports               = ast.KindNamedImports
+	KindImportSpecifier            = ast.KindImportSpecifier
+	KindExportAssignment           = ast.KindExportAssignment
+	KindExportDeclaration          = ast.KindExportDeclaration
+	KindNamedExports               = ast.KindNamedExports
+	KindNamespaceExport            = ast.KindNamespaceExport
+	KindExportSpecifier            = ast.KindExportSpecifier
+	KindMissingDeclaration         = ast.KindMissingDeclaration
+	// Module references
+	KindExternalModuleReference = ast.KindExternalModuleReference
+	// JSX
+	KindJsxElement            = ast.KindJsxElement
+	KindJsxSelfClosingElement = ast.KindJsxSelfClosingElement
+	KindJsxOpeningElement     = ast.KindJsxOpeningElement
+	KindJsxClosingElement     = ast.KindJsxClosingElement
+	KindJsxFragment           = ast.KindJsxFragment
+	KindJsxOpeningFragment    = ast.KindJsxOpeningFragment
+	KindJsxClosingFragment    = ast.KindJsxClosingFragment
+	KindJsxAttribute          = ast.KindJsxAttribute
+	KindJsxAttributes         = ast.KindJsxAttributes
+	KindJsxSpreadAttribute    = ast.KindJsxSpreadAttribute
+	KindJsxExpression         = ast.KindJsxExpression
+	KindJsxNamespacedName     = ast.KindJsxNamespacedName
+	// Clauses
+	KindCaseClause     = ast.KindCaseClause
+	KindDefaultClause  = ast.KindDefaultClause
+	KindHeritageClause = ast.KindHeritageClause
+	KindCatchClause    = ast.KindCatchClause
+	// Import attributes
+	KindImportAttributes = ast.KindImportAttributes
+	KindImportAttribute  = ast.KindImportAttribute
+	// Property assignments
+	KindPropertyAssignment          = ast.KindPropertyAssignment
+	KindShorthandPropertyAssignment = ast.KindShorthandPropertyAssignment
+	KindSpreadAssignment            = ast.KindSpreadAssignment
+	// Enum
+	KindEnumMember = ast.KindEnumMember
+	// Top-level nodes
+	KindSourceFile = ast.KindSourceFile
+)
+
+// -----------------------------------------------------------------------------
+
 // NodeBase
 type NodeBase = ast.NodeBase
 
@@ -37,6 +202,12 @@ type NodeList = ast.NodeList
 
 // NodeFactory
 type NodeFactory = ast.NodeFactory
+
+// Symbol
+type Symbol = ast.Symbol
+
+// SymbolTable
+type SymbolTable = ast.SymbolTable
 
 // DeclarationBase
 type DeclarationBase = ast.DeclarationBase
