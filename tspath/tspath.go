@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-package parser
+package tspath
 
 import (
-	"github.com/microsoft/typescript-go/ast"
-	"github.com/microsoft/typescript-go/core"
-
-	"github.com/microsoft/typescript-go/internal/parser"
+	"github.com/microsoft/typescript-go/internal/tspath"
 )
 
-func ParseSourceFile(opts ast.SourceFileParseOptions, sourceText string, scriptKind core.ScriptKind) *ast.SourceFile {
-	return parser.ParseSourceFile(opts, sourceText, scriptKind)
+type Path = tspath.Path
+
+func GetNormalizedAbsolutePath(fileName string, currentDirectory string) string {
+	return tspath.GetNormalizedAbsolutePath(fileName, currentDirectory)
+}
+
+func ToPath(fileName string, basePath string, useCaseSensitiveFileNames bool) Path {
+	return tspath.ToPath(fileName, basePath, useCaseSensitiveFileNames)
 }
